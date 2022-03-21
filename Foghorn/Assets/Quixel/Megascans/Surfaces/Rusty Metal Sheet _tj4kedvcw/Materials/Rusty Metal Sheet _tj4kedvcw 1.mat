@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rough Brick Wall_vl4kehbfw
+  m_Name: Rusty Metal Sheet _tj4kedvcw 1
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
   m_LightmapFlags: 4
@@ -21,11 +21,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: f712652e100874546b2b7240fdd9fb83, type: 3}
-        m_Scale: {x: 9.08, y: 3.68}
+        m_Texture: {fileID: 2800000, guid: 4b2910a30e43d934aa72e8cd19c39b6c, type: 3}
+        m_Scale: {x: -7.7, y: -4.14}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: b9da485b8c7d4074fbda22e9f50bec67, type: 3}
+        m_Texture: {fileID: 2800000, guid: d0edcf8e69295c34f8d08c0c37849ba7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -45,15 +45,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f712652e100874546b2b7240fdd9fb83, type: 3}
-        m_Scale: {x: 9.08, y: 3.68}
+        m_Texture: {fileID: 2800000, guid: 4b2910a30e43d934aa72e8cd19c39b6c, type: 3}
+        m_Scale: {x: -7.7, y: -4.14}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 7be1e66af96baf248a566c1306fd56e0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 69ce59b5500d6c048aa04a3141b0898d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 7be1e66af96baf248a566c1306fd56e0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 69ce59b5500d6c048aa04a3141b0898d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -106,12 +106,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &982420584804994279
+--- !u!114 &6838615108042919846
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
