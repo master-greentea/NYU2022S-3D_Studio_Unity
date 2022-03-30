@@ -47,7 +47,7 @@ Material:
     - _IOR: 0.06
     - _NormalStrength: 0.558
     - _Refraction_Strength: 0.034
-    - _Smoothness: 0.908
+    - _Smoothness: 0.808
     - _Strength: 0.262
     m_Colors:
     - _DeepColor: {r: 0.24870938, g: 0.49722594, b: 0.764151, a: 0.972549}

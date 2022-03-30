@@ -24,11 +24,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _cintensity: 0.083
+    - _cintensity: 0.1
     - _contrast: 30
     - _distortion: 0.25
     - _gscale: 800
-    - _nintensity: 0.031
+    - _nintensity: 0.01
     - _scale: 0.96
     - _speed: 0
     m_Colors: []
