@@ -6,21 +6,18 @@ using UnityEngine.Rendering.Universal;
 
 public class CameraRay : MonoBehaviour
 {
-    [SerializeField]
-    private Volume postProcessV;
+    [SerializeField] private Volume postProcessV;
     private DepthOfField dof;
 
+    [SerializeField] private Light flashlight;
+    private float startIntensity;
+
     RaycastHit hit;
-    // Start is called before the first frame update
+
     void Start()
     {
         postProcessV.profile.TryGet<DepthOfField>(out dof);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        startIntensity = flashlight.intensity;
     }
 
     void FixedUpdate()
@@ -28,11 +25,19 @@ public class CameraRay : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
+
+            // light intensity
+            if (hit.distance < 1) {
+                flashlight.intensity = Mathf.Lerp(flashlight.intensity, 1.75f, Time.deltaTime * 1.5f);
+            }
+            else flashlight.intensity = Mathf.Lerp(flashlight.intensity, startIntensity, Time.deltaTime * 2f);
+
+            // dof change
             if (hit.distance > 10) {
                 dof.focusDistance.value = Mathf.Lerp(dof.focusDistance.value, 15f, Time.deltaTime);
             }
             else dof.focusDistance.value = Mathf.Lerp(dof.focusDistance.value, 1.5f, Time.deltaTime * 2.5f);
-            // dof.focusDistance.value = hit.distance;
+
             Debug.Log(dof.focusDistance.value);
         }
         else
