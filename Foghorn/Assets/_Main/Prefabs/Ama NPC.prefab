@@ -77,8 +77,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   intensityFromLight: 1
   intensityModeAdvanced: 0
-  intensityInside: 0.15
-  intensityOutside: 0.15
+  intensityInside: 0.75
+  intensityOutside: 0.75
   intensityMultiplier: 1
   hdrpExposureWeight: 0
   blendingMode: 1
@@ -96,7 +96,7 @@ MonoBehaviour:
   attenuationEquation: 1
   attenuationCustomBlending: 0.5
   fallOffStart: 0
-  fallOffEnd: 1
+  fallOffEnd: 1.5
   fallOffEndFromLight: 1
   fallOffEndMultiplier: 1
   depthBlendDistance: 2
@@ -1244,6 +1244,7 @@ GameObject:
   - component: {fileID: 3929888007540105068}
   - component: {fileID: 919132149573605274}
   - component: {fileID: 8155737659753422585}
+  - component: {fileID: 6988064217140584774}
   m_Layer: 0
   m_Name: Ama NPC
   m_TagString: Untagged
@@ -1335,6 +1336,28 @@ CapsuleCollider:
   m_Height: 1.86
   m_Direction: 1
   m_Center: {x: 0, y: 0.92, z: 0}
+--- !u!195 &6988064217140584774
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199797434019122186}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.25
+  m_Speed: 1
+  m_Acceleration: 5
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.65
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4321941149938537284
 GameObject:
   m_ObjectHideFlags: 0

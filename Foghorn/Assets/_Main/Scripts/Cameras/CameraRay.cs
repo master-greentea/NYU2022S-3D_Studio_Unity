@@ -38,7 +38,7 @@ public class CameraRay : MonoBehaviour
             }
             else dof.focusDistance.value = Mathf.Lerp(dof.focusDistance.value, 1.5f, Time.deltaTime * 2.5f);
 
-            Debug.Log(dof.focusDistance.value);
+            // Debug.Log(dof.focusDistance.value);
         }
         else
         {
