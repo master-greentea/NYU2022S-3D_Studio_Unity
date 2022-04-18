@@ -7,7 +7,6 @@ public class NPCFollow : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] float setFollowSpeed;
-    private Vector3 startPos;
     public float allowedDist;
     private float targetDist;
     private GameObject npc;
@@ -23,13 +22,17 @@ public class NPCFollow : MonoBehaviour
 
     // lights
     [SerializeField] Material faceMat;
-    [SerializeField] VLB.VolumetricLightBeam faceLight;
+    // [SerializeField] VLB.VolumetricLightBeam faceLight;
 
     // nav mesh
     private NavMeshAgent navMeshAgent;
 
     // searching
     bool searching;
+    bool rotationReset;
+    private Transform searchGuide;
+    [SerializeField] float searchSpeed;
+    [SerializeField] float searchAngle;
 
     
     void Start()
@@ -37,16 +40,16 @@ public class NPCFollow : MonoBehaviour
         animator = GetComponent<Animator>();
         npc = this.gameObject;
         npcHead = this.transform.Find("Head Position");
+        searchGuide = npcHead.Find("Search Guide");
         navMeshAgent = GetComponent<NavMeshAgent>();
-
-        startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         FollowPlayer();
-        Searching();
+
+        if (searching) Searching();
     }
 
     void FollowPlayer()
@@ -58,14 +61,14 @@ public class NPCFollow : MonoBehaviour
             if (shot.collider.gameObject.tag == "Player")
             {
                 searching = false;
+                rotationReset = false;
+
                 if (targetDist >= allowedDist) {
                     followSpeed = setFollowSpeed;
-                    // old move
-                    // transform.position = Vector3.MoveTowards(transform.position, player.transform.position, followSpeed);
                     navMeshAgent.destination = player.transform.position;
 
                     faceMat.SetColor("_EmissionColor", Color.white * 5);
-                    faceLight.color = Color.white;
+                    // faceLight.color = Color.white;
                 }
                 else {
                     followSpeed = 0;
@@ -73,20 +76,22 @@ public class NPCFollow : MonoBehaviour
                     navMeshAgent.destination = transform.position;
 
                     faceMat.SetColor("_EmissionColor", Color.red * 8);
-                    faceLight.color = Color.red;
+                    // faceLight.color = Color.red;
                 }
+
+                FacePlayer();
             }
             else
             {
                 followSpeed = 0;
                 navMeshAgent.destination = transform.position;
                 faceMat.SetColor("_EmissionColor", Color.yellow * 8);
-                faceLight.color = Color.yellow;
+                // faceLight.color = Color.yellow;
                 searching = true;
             }
         }
 
-        faceLight.UpdateAfterManualPropertyChange(); // update volumetric light
+        // faceLight.UpdateAfterManualPropertyChange(); // update volumetric light
 
         animationBlend = Mathf.Lerp(animationBlend, followSpeed, Time.deltaTime * npcSpeedChangeRate);
         animator.SetFloat("Speed", animationBlend);
@@ -96,16 +101,31 @@ public class NPCFollow : MonoBehaviour
 
     void Searching()
     {
-        if (searching)
+        if (!rotationReset)
         {
-            npcHead.rotation = Quaternion.Euler(npcHead.eulerAngles + Vector3.up * 6 * Time.deltaTime);
+            npcHead.rotation = Quaternion.Euler(0, 0, 0);
+            rotationReset = true;
         }
+
+        else
+        {
+            float rY = Mathf.SmoothStep(-searchAngle, searchAngle ,Mathf.PingPong(Time.time * searchSpeed, 1));
+            npcHead.rotation = Quaternion.Euler(0, rY, 0);
+            // Debug.Log(rY);
+        }
+    }
+
+    void FacePlayer()
+    {
+        Quaternion rot = Quaternion.LookRotation(player.transform.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * .35f);
     }
 
     // head look
     void OnAnimatorIK()
     {
-        animator.SetLookAtWeight(1, .3f, .5f, 0f, .5f);
+        animator.SetLookAtWeight(.75f, .15f, .8f, 0f, .5f);
         if (!searching) animator.SetLookAtPosition(player.transform.position);
+        else animator.SetLookAtPosition(searchGuide.position);
     }
 }
