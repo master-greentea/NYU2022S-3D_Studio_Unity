@@ -2348,7 +2348,7 @@ MonoBehaviour:
   TopClamp: 80
   BottomClamp: -65
   vcam: {fileID: 0}
-  ZoomFOV: 35
+  ZoomFOV: 30
   ZoomTime: 0.1
 --- !u!114 &1978471637655604388
 MonoBehaviour:
