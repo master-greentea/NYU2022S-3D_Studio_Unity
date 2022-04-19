@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using Cinemachine;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -53,9 +54,13 @@ namespace StarterAssets
 		public float TopClamp = 90.0f;
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
+		public CinemachineVirtualCamera vcam;
+		public float ZoomFOV = 30f;
+		public float ZoomTime = .1f;
 
 		// cinemachine
 		private float _cinemachineTargetPitch;
+		private float _startFOV;
 
 		// player
 		private float _speed;
@@ -104,6 +109,8 @@ namespace StarterAssets
 
 			_hasAnimator = TryGetComponent(out _animator);
 			AssignAnimationIDs();
+
+			_startFOV = vcam.m_Lens.FieldOfView;
 		}
 
 		private void Update()
@@ -113,6 +120,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			CameraZoom();
 		}
 
 		private void AssignAnimationIDs()
@@ -158,6 +166,12 @@ namespace StarterAssets
 				// rotate the player left and right
 				transform.Rotate(Vector3.up * _rotationVelocity);
 			}
+		}
+
+		private void CameraZoom()
+		{
+			float targetFOV = _input.zoom ? ZoomFOV : _startFOV;
+			vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, targetFOV, ZoomTime);
 		}
 
 		private void Move()

@@ -879,8 +879,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4135013735270702863}
-  m_LocalRotation: {x: 0.0000000146869805, y: -0.00000008940696, z: 0.0000000028790184, w: 1}
-  m_LocalPosition: {x: -0.03249696, y: 1.6027184, z: 0.160158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.614, z: 0.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8997996947095583982}
@@ -2274,6 +2274,7 @@ GameObject:
   - component: {fileID: 8616685848737228376}
   - component: {fileID: 8400798504817671329}
   - component: {fileID: 1207522593714115172}
+  - component: {fileID: 372190428}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -2311,7 +2312,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
@@ -2329,10 +2330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 4
-  SprintSpeed: 6
-  RotationSpeed: 1
-  SpeedChangeRate: 10
+  MoveSpeed: 3
+  SprintSpeed: 5
+  RotationSpeed: 0.55
+  SpeedChangeRate: 8
   JumpHeight: 1.2
   Gravity: -15
   JumpTimeout: 0.1
@@ -2344,8 +2345,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 513
   CinemachineCameraTarget: {fileID: 4135013735270702863}
-  TopClamp: 90
-  BottomClamp: -90
+  TopClamp: 80
+  BottomClamp: -65
+  vcam: {fileID: 0}
+  ZoomFOV: 35
+  ZoomTime: 0.1
 --- !u!114 &1978471637655604388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2379,6 +2383,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  zoom: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -2389,7 +2394,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -2511,6 +2516,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aeab994491401e46bddf3a4b92ecb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &372190428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef5853170ae76b4dbfdc2a08176d292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: 1
+  amplitude: 0.0015
+  frequency: 13.5
+  camTarget: {fileID: 4135013735270702856}
 --- !u!1 &8644102512922246674
 GameObject:
   m_ObjectHideFlags: 0
