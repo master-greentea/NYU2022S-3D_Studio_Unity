@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class NPCFollow : MonoBehaviour
 {
@@ -45,6 +46,9 @@ public class NPCFollow : MonoBehaviour
     // light pulsing
     private bool pulsing;
     private float pulseTimer;
+
+    // vfx
+    public VisualEffect vfx;
     
     void Start()
     {
@@ -60,6 +64,7 @@ public class NPCFollow : MonoBehaviour
     {
         searching = false;
         pulsing = true; pulseTimer = 0;
+        vfx.Play();
         yield return new WaitForSeconds(detectionTime);
         foundPlayer = true;
         pulsing = false;
