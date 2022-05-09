@@ -1468,6 +1468,7 @@ MonoBehaviour:
   detectionTime: 2
   undetectionTime: 5
   vfx: {fileID: 295867579}
+  damageEffect: {fileID: 0}
 --- !u!54 &919132149573605274
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -49,6 +49,9 @@ public class NPCFollow : MonoBehaviour
 
     // vfx
     public VisualEffect vfx;
+
+    // damage effect
+    [SerializeField] private DamageEffect damageEffect;
     
     void Start()
     {
@@ -103,6 +106,8 @@ public class NPCFollow : MonoBehaviour
                     brokenContact = false;
                     faceLight.gameObject.GetComponent<VLB.EffectPulse>().enabled = false;
 
+                    if (!damageEffect.transitioning) damageEffect.takingDamage = true;
+
                     // keep tracking player
                     if (targetDist >= allowedDist) {
                         followSpeed = setFollowSpeed;
@@ -141,6 +146,8 @@ public class NPCFollow : MonoBehaviour
                     canDetect = true;
                     foundPlayer = false;
                     // StopAllCoroutines();
+
+                    damageEffect.brokenContact = true;
                 }
                 // detection logic
                 if (!brokenContact && canUndetect)

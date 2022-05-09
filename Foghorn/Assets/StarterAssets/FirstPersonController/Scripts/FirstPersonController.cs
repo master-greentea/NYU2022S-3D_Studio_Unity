@@ -89,6 +89,10 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
+
+		// footsteps
+		[SerializeField] private FootstepPlayer footsteps;
+
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -226,6 +230,15 @@ namespace StarterAssets
 				_animator.SetFloat(_animIDSpeed, _animationBlend);
 				_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 			}
+
+			// footsteps
+			if (targetSpeed == MoveSpeed) {footsteps.walking = true; footsteps.running = false;}
+			if (targetSpeed == SprintSpeed) {footsteps.walking = false; footsteps.running = true;}
+			if (targetSpeed == 0) 
+			{
+				footsteps.walking = false;
+				footsteps.running = false;
+			}
 		}
 
 		private void JumpAndGravity()
@@ -234,6 +247,9 @@ namespace StarterAssets
 			{
 				// reset the fall timeout timer
 				_fallTimeoutDelta = FallTimeout;
+
+				// reset footsteps
+				footsteps.playingVolume = .35f;
 
 				if (_hasAnimator)
 				{
@@ -283,9 +299,12 @@ namespace StarterAssets
 					}
 				}
 				
-
+				
 				// if we are not grounded, do not jump
 				_input.jump = false;
+
+				// if not grounded, stop footstep sounds
+				footsteps.playingVolume = 0;
 			}
 
 			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)

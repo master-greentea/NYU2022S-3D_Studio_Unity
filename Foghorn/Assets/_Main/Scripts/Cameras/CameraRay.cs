@@ -28,7 +28,7 @@ public class CameraRay : MonoBehaviour
 
             // light intensity
             if (hit.distance < 1) {
-                flashlight.intensity = Mathf.Lerp(flashlight.intensity, 1.75f, Time.deltaTime * 1.5f);
+                flashlight.intensity = Mathf.Lerp(flashlight.intensity, 1.75f, Time.deltaTime * 5f);
             }
             else flashlight.intensity = Mathf.Lerp(flashlight.intensity, startIntensity, Time.deltaTime * 2f);
 
