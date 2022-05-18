@@ -14,6 +14,7 @@ public class TitleToGame : MonoBehaviour
     IEnumerator GoToGame(string sceneToGo)
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(sceneToGo);
     }
